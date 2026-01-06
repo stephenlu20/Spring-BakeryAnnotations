@@ -1,11 +1,17 @@
 package com.zipcodewilmington.bakery.models;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "muffins")
 public class Muffin {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String flavor;
 
     public Muffin() {
@@ -37,7 +43,7 @@ public class Muffin {
         if (o == null || getClass() != o.getClass()) return false;
         Muffin muffin = (Muffin) o;
         return Objects.equals(id, muffin.id) &&
-                Objects.equals(flavor, muffin.flavor);
+               Objects.equals(flavor, muffin.flavor);
     }
 
     @Override
