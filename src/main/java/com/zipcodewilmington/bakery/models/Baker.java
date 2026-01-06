@@ -1,13 +1,20 @@
 package com.zipcodewilmington.bakery.models;
 
-
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "bakers")
 public class Baker {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false, unique = true)
     private String employeeId;
 
     private String specialty;
@@ -64,13 +71,11 @@ public class Baker {
         if (o == null || getClass() != o.getClass()) return false;
         Baker baker = (Baker) o;
         return Objects.equals(id, baker.id) &&
-                Objects.equals(name, baker.name) &&
-                Objects.equals(employeeId, baker.employeeId) &&
-                Objects.equals(specialty, baker.specialty);
+               Objects.equals(employeeId, baker.employeeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employeeId, specialty);
+        return Objects.hash(id, employeeId);
     }
 }
